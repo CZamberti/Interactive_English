@@ -1,0 +1,17 @@
+{% extends "bootstrap/base.html" %}
+
+{% block styles %}
+{{super()}}
+<!--importazione del foglio di stile di bootstrap e di jQuery-->
+<link rel="stylesheet" href="{{url_for('.static', filename='bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='styles.css')}}">
+<script src="{{ url_for('static', filename='jquery-3.1.1.js') }}"></script>
+{% endblock %}
+<!--definizione del blocco del titolo-->
+{% block title %}
+{{title}}
+{% endblock %}
+<!--definizione del blocco della barra di navigazione-->
+{% block navbar %}
+{{nav.mynavbar.render()}}
+{% endblock %}

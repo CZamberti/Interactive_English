@@ -1,0 +1,161 @@
+{% extends "layout.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+{% block scripts %}
+{{ super() }}
+<script type="text/javascript">
+//inizializzo la variabile che conta gli abbinamenti della parola alla parte del discorso corretti 
+var abbinamentiCorretti = 0;
+$( init );
+function init() { //funzione per l'inizializzazione dell'attività 
+	$('#successo').hide(); //nasconde il messaggio di successo (che deve essere mostrato alla fine del gioco)
+	$('#successo').css( { //stili per il messaggio di successo
+		left: '580px',
+		top: '250px',
+		width: 0,
+		height: 0
+	} );
+	// Reinizializzazione della variabile per gli abbinamenti e svuotamento html per il reset
+	abbinamentiCorretti = 0; 
+	$('#origineParola').html( '' );
+	$('#destinazParteD').html( '' );
+
+//ciclo Jinja2 per iterare sulla struttura (dizionario ordinato) con all'interno le coppie chiave-valore parola-parte del discorso
+{%for parola, pd in dictionary.iteritems()%}
+//riempimento dei div delle parole, impostazione dell'attributo necessario all'associazione e definizione delle regole per il dragging con jQueryUI
+		$("<div>"+"<tr>"+"{{parola[1]}}"+"</tr>"+"</div>").data( 'valore', "{{pd}}").attr( 'id', 'card'+"{{pd}}" ).appendTo( '#origineParola' ).draggable( {
+			containment: '#content',
+			stack: '#origineParola div',
+			cursor: 'move',
+			revert: true,
+			helper:"clone",
+		} );
+
+//riempimento dei div di destinazione delle parti del discorso, impostazione dell'attributo necessario all'associazione e definizione delle regole per il dragging con jQueryUI
+		$('<div class="pd">' + "<tr>"+ "{{pd}}" +'</tr>').data( 'valore',
+			"{{pd}}").appendTo( '#destinazParteD' ).droppable( {
+			accept: '#origineParola div',
+			hoverClass: 'hovered',
+			drop: handleCardDrop
+		} );
+
+{%endfor%}
+
+//rimuove i duplicati delle parti del discorso
+ $('.pd').each(function () {
+			$('.pd:contains("' + $(this).text() + '"):gt(0)').remove();  
+ });
+
+//funzione per il mescolamento del secondo gruppo di div (relativi alle parti del discorso)
+ $(function () {
+		var parent = $("#destinazParteD");
+		var divs = parent.children();
+		while (divs.length) {
+				parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
+		}
+});
+}
+//funzione per la gestione del drag e del drop dei div
+function handleCardDrop( event, ui ) {
+	var valoreParola = $(this).data( 'valore' );
+	var valoreParteD = ui.draggable.data( 'valore' );
+	//controllo per il comportamento in caso di abbinamento effettuato con successo
+	if ( valoreParola == valoreParteD) {
+		ui.draggable.addClass( 'correct' );
+		ui.draggable.toggle("fade",500, "nascondi" );
+		ui.draggable.css("border", "none");
+		ui.draggable.css("background", "none");
+		ui.draggable.css("color", "green");
+		ui.draggable.css("font-size", "25px")
+		ui.draggable.draggable( 'disable' )
+		ui.draggable.position( { of: $(this), my: 'center', at: 'center' } );
+		ui.draggable.draggable( 'option', 'revert', false );
+		abbinamentiCorretti++;
+	} 
+	//controllo per mostrare la finestra di successo in caso di abbinamento di tutte le parole alle parti del discorso
+	if ( abbinamentiCorretti == {{lungfrase}}) {
+		$('#successo').show();
+		$('#successo').animate( { //animazione alla comparsa della finestra
+			left: '380px',
+			top: '30vh',
+			width: '34vw',
+			height: '300px',
+			opacity: 1
+		} );
+		//svuotamento dei div alla pressione del pulsante "Riprovare?" nella finestra di successo
+		$('#destinazParteD').css("visibility", "hidden");
+		$('#origineParola').css("visibility", "hidden");
+		
+	}
+
+}
+</script>
+<!--importazione degli script-->
+<script src="{{ url_for('static', filename='jquery-ui.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='jquery-ui.css') }}"></script>
+</head>
+<body>
+<div class="container">
+<!--definizione dell'intestazione e del form-->
+	<h2 class="page-header titolo">Analisi Grammaticale</h2>
+	<p class="info">Scrivi una frase e poi premi il pulsante "Analizza!". Associa poi la parola alla parte del discorso corrispondente.</p>
+	<!--definizione della view di destinazione e del metodo di invio dei dati al server-->
+	<form role="form" action="{{ url_for('analisi_grammaticale') }}" method="POST" >
+		<div class="form-group">
+			<textarea id="txt" class="form-control" rows="5" name="analisi_grammaticale" id="comment"></textarea>
+		</div>
+		<input type="submit" id="invia" class="btn btn-primary" value="Analizza!">
+	</form>
+<!--definizione del contenuto-->
+<div id="content">
+<!--output della frase inserita-->
+<h2>
+Frase: {{raw}}
+</h2>
+</br>
+<!--tabella con i div delle parole e delle parti del discorso-->
+<table class=" table table-bordered table-striped table-hover table-condensed table-responsive">
+	<thead>
+		<tr>
+			<th>
+				<h2>Parole</h2>
+			</th>
+			<th>
+				<h2>Parti del discorso</h2>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<!--definizione del div per le parole -->
+				<div id="origineParola"></div>
+			</td>
+			<td>
+			<!--definizione del div per le parti del discorso -->
+				<div id="destinazParteD"> </div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+	<!--div del messaggio di successo -->
+	<div id="successo">
+		<h2>Ottimo lavoro!</h2>
+		<form>
+		<input class="MyButton" type="button" onclick="init();" value="Vuoi riprovare?"/>
+		</form>
+	</div>
+</div>
+<!--definizione del footer-->
+	<footer>
+			<div class="row">
+					<div class="col-lg-12">
+							<p>Copyright &copy; Chiara Zamberti. 2017 - All Rights Reserved</p>
+					</div>
+			</div>
+	</footer>
+</body>
+{% endblock %}
+</html>

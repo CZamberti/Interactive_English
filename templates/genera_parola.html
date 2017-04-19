@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+{% block scripts %}
+{{ super() }}
+<!--importazione dello script per il funzionamento di ResponsiveVoice-->
+<script src="{{ url_for('static', filename='responsivevoice.js') }}"></script>
+<script language="javascript"> 
+//creazione della funzione per gestire il contenuto della select e avviare la sintesi vocale
+function generaAscolta(){
+//individuazione del div della select
+var categoria=document.getElementById("selezionaCat");
+//definizione delle variabili delle categorie di vocaboli dalle quali trarre un vocabolo a caso con il filtro di Jinja2 'random'
+var casa="{{parole_home | random}}"
+var cibo="{{parole_food | random}}"
+var num_col="{{parole_numcol | random}}"
+var vestiti="{{parole_cl | random}}"
+var pa_co="{{parole_pb | random}}"
+var scuola="{{parole_sc | random}}"
+var citta="{{parole_cy | random}}"
+//controlli per la generazione di una parola a seconda della categoria selezionata e per la relativa pronuncia con ResponsiveVoice
+	if(categoria.value=="Casa"){
+		document.getElementById("parGen").innerHTML = "<h2>"+"La parola è: <p class='par'>" +casa +"</p></h2>";
+		responsiveVoice.speak(casa);
+ }
+	if(categoria.value=="Cibo"){
+		document.getElementById("parGen").innerHTML = "<h2>"+"La parola è: <p class='par'>" + cibo+"</p></h2>"; 
+		responsiveVoice.speak(cibo);
+ }
+	if(categoria.value=="Num_Col"){
+		document.getElementById("parGen").innerHTML = "<h2>"+"La parola è: <p class='par'>" + num_col+"</p></h2>";
+		responsiveVoice.speak(num_col);
+ }
+	if(categoria.value=="Vestiti"){
+		document.getElementById("parGen").innerHTML = "<h2>"+"La parola è: <p class='par'>" + vestiti+"</p></h2>";
+		responsiveVoice.speak(vestiti);
+ }
+	if(categoria.value=="Pa_Co"){
+		document.getElementById("parGen").innerHTML = "<h2>"+"La parola è: <p class='par'>" +pa_co+"</p></h2>"; 
+		responsiveVoice.speak(pa_co);
+ }
+	if(categoria.value=="Scuola"){
+		document.getElementById("parGen").innerHTML = "<h2>"+"La parola è: <p class='par'>" + scuola+"</p></h2>";
+		responsiveVoice.speak(scuola); 
+ }
+	if(categoria.value=="Citta"){
+		document.getElementById("parGen").innerHTML = "<h2>"+"La parola è: <p class='par'>" + citta+"</p></h2>";
+		responsiveVoice.speak(citta); 
+ }
+
+}
+
+</script>
+</head>
+<body>
+<div class="container">
+<!--definizione dell'intestazione-->
+	<h2 class="page-header titolo">Genera, ascolta e ripeti!</h2>
+	<p class="info">Genera una parola dalla categoria che preferisci, ascolta come si pronuncia e ripeti.</p>
+</br>
+<!--definizione del definizione della select-->
+<div class="dropdown">
+<h2>Categoria di vocaboli:</h2>
+	<div class="categoria1wrap">
+		<select id="selezionaCat">
+		<option disabled selected value> -- Seleziona una categoria -- </option>
+			<option value="Casa">Casa</option>
+			<option value="Cibo">Cibo</option>
+			<option value="Num_Col">Numeri e colori</option>
+			<option value="Vestiti">Vestiti</option>
+			<option value="Pa_Co">Parti del corpo</option>
+			<option value="Scuola">Scuola</option>
+			<option value="Citta">Città</option>
+		</select>
+	</div>
+</br>
+<!--definizione del bottone per la generazione e per l'ascolto della parola-->
+<button class="btn btn-default" id="checkbtn" onclick="generaAscolta();" type="button">Genera e ascolta! </button>
+<!--definizione del paragrafo di destinazione della parola generata-->
+<p id="parGen"></p>
+
+<br/>
+</div>
+</div>
+<!--definizione del footer-->
+	<footer>
+			<div class="row">
+					<div class="col-lg-12">
+							<p>Copyright &copy; Chiara Zamberti. 2017 - All Rights Reserved</p>
+					</div>
+			</div>
+	</footer>
+</body>
+{% endblock %}
+</html>

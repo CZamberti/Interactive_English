@@ -1,0 +1,432 @@
+/*definizioni degli stili generali*/
+body,
+html {
+	font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+		background: url(img/sfondo_ag.jpg);
+		width: 100%;
+		height: 100%;
+		font-weight: 500;
+}
+
+a {
+	cursor:pointer;
+	font-weight: bold;
+}
+
+th{
+	color:white;
+	text-align:center;
+	background:#3fb13d
+}
+
+td{
+	background-color: #fbf8eb;
+	width:50%;
+	min-width:50%;
+}
+
+footer {
+		border-top: 1px solid #1c350f;
+		padding: 1px 0 12px;
+		background-color: #3fb23e;
+}
+
+/*definizioni degli stili per la barra di navigazione*/
+.navbar-default {
+		background-color: rgba(4, 155, 14, 0.73);
+		border-bottom: 2px solid #1c350f;
+		border-top:none;
+		border-left:none;
+		border-right:none;
+		border-radius: 0px;
+		margin-bottom: 0;
+		color: #fff;
+}
+
+.navbar-default .navbar-brand {
+		color: #fff;
+		background-repeat: no-repeat;
+		background-position-x: 50%;
+}
+
+.navbar-default .navbar-nav>li>a {
+		color: #fff;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+		color: #555;
+		background-color: #fcf8e3;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+		background-color: #fff;
+}
+
+@media (min-width: 768px){
+.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+    color: #1f3b13;
+}
+}
+
+#start_btn {
+		position: fixed; /* or absolute */
+		top: 45%;
+		left: 45%;
+}
+
+/*definizione di una regola per spingere il footer in fondo definendo le dimensioni del container*/
+.container{
+		min-height: 70%;
+		min-height: -webkit-calc(100% - 50px);
+		min-height: -moz-calc(100% - 50px);
+		min-height: calc(100% - 50px);
+}
+/*definizioni degli stili per il titolo*/
+.titolo{
+	color: #08520c;
+	margin-bottom: 3%;
+}
+
+/****stili pagina analisi_grammaticale****/
+/*definizione degli stili per il pulsante di invio dati al server*/
+input[type=submit] {
+		-webkit-appearance: button;
+		cursor: pointer;
+		color: #ffffff;
+		font-size: 2em;
+}
+
+.btn-primary {
+		color: #fff;
+		border: 1px solid;
+		background-color: #3fb13d;
+		border-color: #1c350f;
+}
+.btn-primary:hover {
+
+		background-color: #338a32;
+
+}
+
+/*definizioni degli stili per le sezioni del gioco*/
+.wideBox {
+	clear: both;
+	text-align: center;
+	margin: 70px;
+	padding: 10px;
+	background: #ebedf2;
+	border: 1px solid #333;
+}
+
+.wideBox h1 {
+	font-weight: bold;
+	margin: 20px;
+	color: #666;
+	font-size: 1.5em;
+}
+
+
+/*definizione degli stili del bottone per ricominciare il gioco*/
+input.MyButton {
+	padding: 20px;cursor: pointer;
+	font-weight: bold;
+	font-size: 150%;
+	background: #93ff9b;
+	color: #1c350f;
+	border: 2px dashed #44b646;
+	border-radius: 10px;
+	-moz-box-shadow: 6px 6px 5px #999;
+	-webkit-box-shadow: 6px 6px 5px #999;
+	box-shadow: 6px 6px 5px #999;
+}
+input.MyButton:hover {
+color: #ddffdd;
+background: #1c350f;
+border: 2px dashed #45b747;
+-moz-box-shadow:: 5px 5px 4px #adadad;
+-webkit-box-shadow:: 5px 5px 4px #adadad;
+box-shadow:: 5px 5px 4px #adadad;
+} 
+
+
+.bottoni-home {
+		padding: 10px 16px;
+		font-size: 18px;
+		line-height: 1.3333333;
+		border-radius: 10px;
+		color: #f8f8f8;
+		background-color: #45b647;
+		border: 2px solid #f8f8f8;
+}
+.form-control {
+		margin-bottom: 2%;
+		display: block;
+		width: 100%;
+		padding: 6px 12px;
+		font-size: 14px;
+		line-height: 1.42857143;
+		color: #555;
+		background-color: #fbf8eb;
+		border: 1px solid #1c350f;
+		border-radius: 4px;
+		-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+		box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+		-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+		-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+		transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+/*definizione degli stili per la tabella dell'analisi grammaticale*/
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+		border: 1px solid #1c350f;
+}
+.table-bordered {
+		border: 1px solid #1c350f;
+}
+
+/*definizione degli stili per gli slot da trascinare e la relativa allocazione*/
+	#draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+	#droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+
+/*definizioni degli stili per gli slot delle parole e delle parti del discorso*/
+#origineParola {
+	margin: 0 auto;
+}
+
+#destinazParteD, #origineParola {
+	height: 120px;
+	padding: 20px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-moz-box-shadow: 0 0 .3em rgba(0, 0, 0, .8);
+}
+
+#destinazParteD div, #origineParola div {
+	text-align: center;
+	float: left;
+	width: auto;
+	height: auto;
+	min-width: 2em;
+	padding: 10px;
+	padding-top: 10px;
+	padding-bottom: 0;
+	border: 2px solid #84ca97;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	margin: 0 0 10px 10px;
+	background: rgba(147, 255, 155, 0.16);
+}
+
+#destinazParteD div.hovered {
+	background: #aaa;
+}
+
+#destinazParteD div {
+	min-height:3em;
+	border-style: dashed;
+	font-size: 2em;
+	padding-top:20px;
+}
+
+#origineParola div {
+	background: #f8ffec;
+	color: #08520c;
+	font-size: 50px;
+}
+
+#origineParola div.ui-draggable-dragging {
+	-moz-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
+	-webkit-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
+	box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
+}
+
+/*definizione degli stili per il messaggio di successo*/
+#successo{
+	position: absolute;
+	text-align: center;
+	width: auto;
+	height: auto;
+	z-index: 100;
+	background: #dfd;
+	border: 2px solid #84ca97;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	padding: 20px;
+	color: #1c350f;
+}
+
+/****stili pagina home****/
+.intro-header {
+		padding-top: 50px; 
+		padding-bottom: 50px;
+		text-align: center;
+		color: #f8f8f8;
+		background: url(img/sfondo.jpg) no-repeat center center;
+		background-size: cover;
+}
+
+.intro-message {
+		position: relative;
+		padding-top: 10%;
+		padding-bottom: 20%;
+}
+
+.intro-message > h1 {
+		margin: 0;
+		text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+		font-size: 5em;
+}
+
+.intro-divider {
+		width: 400px;
+		border-top: 1px solid #f8f8f8;
+		border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.intro-message > h3 {
+		text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+
+@media(max-width:767px) {
+		.intro-message {
+				padding-bottom: 15%;
+		}
+
+		.intro-message > h1 {
+				font-size: 3em;
+		}
+
+		ul.intro-social-buttons > li {
+				display: block;
+				margin-bottom: 20px;
+				padding: 0;
+		}
+
+		ul.intro-social-buttons > li:last-child {
+				margin-bottom: 0;
+		}
+
+		.intro-divider {
+				width: 100%;
+		}
+}
+
+.network-name {
+		text-transform: uppercase;
+		font-size: 14px;
+		font-weight: 400;
+		letter-spacing: 2px;
+}
+
+.content-section-a {
+		padding: 50px 0;
+		background-color: #f8f8f8;
+}
+
+.content-section-b {
+		padding: 50px 0;
+		border-top: 1px solid #e7e7e7;
+		border-bottom: 1px solid #e7e7e7;
+}
+
+.section-heading {
+		margin-bottom: 30px;
+}
+
+.section-heading-spacer {
+		float: left;
+		width: 200px;
+		border-top: 3px solid #e7e7e7;
+}
+
+.banner {
+		padding: 100px 0;
+		color: #f8f8f8;
+		background-size: cover;
+}
+
+.banner h2 {
+		margin: 0;
+		text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+		font-size: 3em;
+}
+
+.banner ul {
+		margin-bottom: 0;
+}
+
+.banner-social-buttons {
+		float: right;
+		margin-top: 0;
+}
+
+@media(max-width:1199px) {
+		ul.banner-social-buttons {
+				float: left;
+				margin-top: 15px;
+		}
+}
+
+@media(max-width:767px) {
+		.banner h2 {
+				margin: 0;
+				text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+				font-size: 3em;
+		}
+
+		ul.banner-social-buttons > li {
+				display: block;
+				margin-bottom: 20px;
+				padding: 0;
+		}
+
+		ul.banner-social-buttons > li:last-child {
+				margin-bottom: 0;
+		}
+}
+
+p.copyright {
+		margin: 15px 0 0;
+}
+
+/****stili pagina genera_parola****/
+#checkbtn{
+	font-size:1.5em;
+}
+.dropdown{
+	text-align:center;
+}
+/*definizione del menù a tendina per la selezione delle categorie*/
+.dropdown{
+	font-size:1.5em;
+}
+
+.par{
+	color:#08520c;
+	font-size:2.5em;
+}
+
+.page-header {
+		padding-bottom: 9px;
+		margin: 40px 0 20px;
+		border-bottom: 1px solid #1c350f;
+}
+
+/****stili pagina about****/
+.info{
+	text-align: center;
+	font-size:1.2em;
+}
+.img-circle {
+	margin: auto;
+    border-radius: 50%;
+}
+.centrato{
+	text-align: center;
+}
+.centrato img{
+	margin: 10px;
+}

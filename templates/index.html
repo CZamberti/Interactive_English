@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Benvenuti</title>
+</head>
+<body>
+{%block content%}
+	<!--definizione dell'intestazione-->
+	<div class="intro-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="intro-message">
+						<h1>Benvenuti!</h1>
+						<h3>Scegliere l'attività che si desidera svolgere</h3>
+						<hr class="intro-divider">
+						<!--definizione dei bottoni che portano alle due attività-->
+						<ul class="list-inline intro-social-buttons">
+							<li>
+								<a href="{{ url_for('analisi_grammaticale') }}" class="btn btn-default btn-lg bottoni-home"> Analisi grammaticale</a>
+							</li>
+							<li>
+								<a href="{{ url_for('genera_parola') }}" class="btn btn-default btn-lg bottoni-home">Genera, ascolta e ripeti!</a>
+							</li>
+
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!--definizione del footer-->
+	<footer>
+		<div class="row">
+			<div class="col-lg-12">
+				<p>Copyright &copy; Chiara Zamberti. 2017 - All Rights Reserved</p>
+			</div>
+		</div>
+	</footer>
+</body>
+{%endblock%}
+</html>
