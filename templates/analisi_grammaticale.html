@@ -86,7 +86,7 @@ function handleCardDrop( event, ui ) {
 		//svuotamento dei div alla pressione del pulsante "Riprovare?" nella finestra di successo
 		$('#destinazParteD').css("visibility", "hidden");
 		$('#origineParola').css("visibility", "hidden");
-		
+		$('#frase_raw').css("visibility", "hidden");
 	}
 
 }
@@ -111,7 +111,10 @@ function handleCardDrop( event, ui ) {
 <div id="content">
 <!--output della frase inserita-->
 <h2>
-Frase: {{raw}}
+Frase:
+<span id="frase_raw">
+{{raw}}
+</span>
 </h2>
 </br>
 <!--tabella con i div delle parole e delle parti del discorso-->
